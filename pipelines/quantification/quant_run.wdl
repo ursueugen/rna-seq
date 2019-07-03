@@ -68,7 +68,6 @@ workflow quant_run {
     File quant = quant_folder + "/" + "quant.sf"
     File quant_lib = quant_folder + "/" + "lib_format_counts.json"
     File genes = copy_quant.out[2]
-    File transcripts_counts = copy_quant.out[3]
     File genes_counts = copy_quant.out[4]
 
     QuantifiedRun quantified = object {
@@ -78,7 +77,6 @@ workflow quant_run {
             quant: quant,
             lib: quant_lib,
             genes: genes,
-            transcripts_counts: transcripts_counts,
             genes_counts: genes_counts,
             metadata: metadata,
             tx2gene: tx2gene
@@ -142,11 +140,9 @@ task tximport {
 
     output {
         File transcripts = "expressions/transcripts/" + name + "_transcripts_abundance.tsv"
-
         File genes_length = "expressions/genes/" + name + "_genes_length.tsv"
         File genes_counts = "expressions/genes/" + name + "_genes_counts.tsv"
         File genes = "expressions/genes/" + name + "_genes_abundance.tsv"
-        File transcripts_counts = "expressions/transcripts/" + name + "_transcripts_counts.tsv"
         File genes_counts = "expressions/genes/" + name + "_genes_counts.tsv"
     }
 
